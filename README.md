@@ -1,5 +1,5 @@
 # ft_printf
-Ft_printf (42cursus) 2021-03-02 ~
+ft_printf (42cursus) 2021-03-02 ~
 
 - Actual Status : progressing
 - Result        : 
