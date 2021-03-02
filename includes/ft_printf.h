@@ -6,13 +6,14 @@
 /*   By: seuan <seuan@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/02 14:55:46 by seuan             #+#    #+#             */
-/*   Updated: 2021/03/02 14:57:25 by seuan            ###   ########.fr       */
+/*   Updated: 2021/03/02 16:28:28 by seuan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FT_PRINTF_H
 # define FT_PRINTF_H
 
+# include "../libft/libft.h"
 # include <stdarg.h>
 
 #endif
