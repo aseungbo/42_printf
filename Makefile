@@ -1,21 +1,9 @@
-# **************************************************************************** #
-#                                                                              #
-#                                                         :::      ::::::::    #
-#    Makefile                                           :+:      :+:    :+:    #
-#                                                     +:+ +:+         +:+      #
-#    By: seuan <seuan@student.42seoul.kr>           +#+  +:+       +#+         #
-#                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2021/03/02 15:00:45 by seuan             #+#    #+#              #
-#    Updated: 2021/03/02 16:27:55 by seuan            ###   ########.fr        #
-#                                                                              #
-# **************************************************************************** #
-
 NAME	= libftprintf.a
 RM		= rm -rf
-INCLUDES = -I./includes
+INCLUDES = -I./
 
 CC		= gcc
-FLAGS	= -Wall -Wextra -Werror
+FLAGS	= -Wall -Wextra -Werror -c
 
 # SRC, OBJS
 SRCS	= ft_printf.c \
