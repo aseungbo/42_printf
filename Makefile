@@ -7,7 +7,18 @@ FLAGS	= -Wall -Wextra -Werror -c
 
 # SRC, OBJS
 SRCS	= ft_printf.c \
+			ft_print_char.c \
+			ft_spec.c \
+			ft_width.c \
+			ft_putchar.c \
+			ft_isdigit.c \
 
+SURPL_O = ft_print_char.o \
+			ft_spec.o \
+			ft_width.o \
+			ft_putchar.o \
+			ft_isdigit.o \
+			
 OBJS	= $(SRCS:.c=.o)
 
 $(NAME): $(OBJS)
