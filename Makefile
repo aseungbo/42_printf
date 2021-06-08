@@ -14,18 +14,20 @@ SRCS	= ft_printf.c \
 			ft_putchar.c \
 			ft_isdigit.c \
 
+
 SURPL_O = ft_print_char.o \
 			ft_print_string.o \
 			ft_spec.o \
 			ft_width.o \
 			ft_putchar.o \
 			ft_isdigit.o \
-			
+
+
 OBJS	= $(SRCS:.c=.o)
 
 $(NAME): $(OBJS)
-##		make -C ./libft
-##		cp ./libft/libft.a $(NAME)
+		make -C ./libft
+		cp ./libft/libft.a $(NAME)
 		$(CC) $(FLAGS) $(INCLUDES) $(SRCS)
 		ar -rc $(NAME) $(OBJS)
 

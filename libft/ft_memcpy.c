@@ -6,7 +6,7 @@
 /*   By: seuan <seuan@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/27 15:02:54 by seuan             #+#    #+#             */
-/*   Updated: 2020/12/27 15:12:09 by seuan            ###   ########.fr       */
+/*   Updated: 2021/06/08 15:26:23 by seuan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	*ft_memcpy(void *dest, const void *src, size_t n)
 
 	d = dest;
 	s = src;
-	if (dest == '\0' && src == '\0')
+	if (dest == 0 && src == 0)
 		return (0);
 	while (n--)
 		*d++ = *s++;

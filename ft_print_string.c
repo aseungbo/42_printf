@@ -6,7 +6,7 @@
 /*   By: seuan <seuan@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/08 10:01:42 by seuan             #+#    #+#             */
-/*   Updated: 2021/06/08 12:55:06 by seuan            ###   ########.fr       */
+/*   Updated: 2021/06/08 15:39:20 by seuan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,19 +43,15 @@ int	print_str_dot(char *str, t_flags flags)
 int ft_print_string(char *str, t_flags flags)
 {
 	int cnt;
-	int len;
+	// int len;
 
 	cnt = 0;
-	len = ft_strlen(str);
-	if (flags.dot > len)
-	{
+	// len = ft_strlen(str);
+	if (str == NULL)
+		str = "(NULL)";
+	if (flags.dot > -1)
+		printf("width: %d \n", flags.width);
 		printf("dot: %d \n", flags.dot);
 		print_str_dot(str, flags);
-	}
-	if (flags.dot < len)
-	{
-		printf("dot: %d \n", flags.dot);
-		print_str_dot(str, flags);
-	}
 	return (cnt);
 }

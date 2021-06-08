@@ -6,7 +6,7 @@
 /*   By: seuan <seuan@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/28 21:30:20 by seuan             #+#    #+#             */
-/*   Updated: 2020/12/28 21:35:43 by seuan            ###   ########.fr       */
+/*   Updated: 2021/06/08 15:27:47 by seuan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 	char	*str;
 	size_t	idx;
 
-	if (s == '\0')
+	if (s == 0)
 		return (NULL);
 	str = (char *)malloc(sizeof(char) * (len + 1));
 	if (!str)

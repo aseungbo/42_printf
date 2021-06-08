@@ -6,7 +6,7 @@
 /*   By: seuan <seuan@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/07 10:07:48 by seuan             #+#    #+#             */
-/*   Updated: 2021/06/08 12:55:10 by seuan            ###   ########.fr       */
+/*   Updated: 2021/06/08 15:24:19 by seuan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,5 +36,4 @@ int	ft_type_list(int c);
 int	ft_flags_list(int c);
 int	ft_width(int width, int minus, int zero);
 int	ft_isdigit(int c);
-int	ft_strlen(char *str);
 #endif
