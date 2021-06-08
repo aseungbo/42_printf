@@ -6,23 +6,23 @@
 /*   By: seuan <seuan@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/07 10:07:52 by seuan             #+#    #+#             */
-/*   Updated: 2021/06/08 07:49:30 by seuan            ###   ########.fr       */
+/*   Updated: 2021/06/08 12:50:00 by seuan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-void			init_flags(t_flags *flags)
+void	init_flags(t_flags *flags)
 {
 	flags->minus = 0;
 	flags->zero = 0;
 	flags->width = 0;
-	flags->prec = -1;
+	flags->dot = -1;
 	flags->type = 0;
 	flags->star = 0;
 }
 
-int				ft_flag_parse(const char *format, int i, t_flags *flags, va_list ap)
+int	ft_flag_parse(const char *format, int i, t_flags *flags, va_list ap)
 {
 	while (format[i])
 	{
@@ -36,6 +36,14 @@ int				ft_flag_parse(const char *format, int i, t_flags *flags, va_list ap)
 			{
 				flags->minus = 1;
 				flags->width *= -1;
+			}
+		}
+		if (format[i] == '.')
+		{
+			flags->dot = 0;
+			while (ft_isdigit(format[++i]))
+			{
+				flags->dot = (flags->dot * 10) + (format[i] - '0');
 			}
 		}
 		if (ft_isdigit(format[i]))
@@ -54,22 +62,21 @@ int				ft_flag_parse(const char *format, int i, t_flags *flags, va_list ap)
 	return (i);
 }
 
-int				ft_printf(const char *format, ...)
+int	ft_printf(const char *format, ...)
 {
-    int		i;
+	int		i;
 	int		cnt;
-    va_list	ap;
+	va_list	ap;
 	t_flags	flags;
 
-    i = 0;
+	i = 0;
 	cnt = 0;
 	init_flags(&flags);
-    va_start(ap, format);
-    while (format[i] != '0')
-    {
-		// 서식 지정자 출력
+	va_start(ap, format);
+	while (format[i] != '\0')
+	{
 		if (format[i] == '%' && format[i + 1])
-		{	
+		{
 			i = ft_flag_parse(format, ++i, &flags, ap);
 			if (ft_type_list(format[i]))
 				cnt += ft_spec((char)flags.type, flags, ap);
@@ -77,25 +84,52 @@ int				ft_printf(const char *format, ...)
 				cnt += ft_putchar(format[i]);
 			i++;
 		}
-
-		// 문자열 출력
-		if (format[i] != '%')
+		else if (format[i] != '%')
 			cnt += ft_putchar(format[i]);
 		i++;
-    }
-    va_end(ap);
+	}
+	va_end(ap);
 	return (cnt);
 }
 
-//  test
-int			main()
+// test
+int	main()
 {
-	printf("----------- TEST -----------\n");
-	printf("printf: \n");
-	printf("abbcade");
+	char *s = "42seoul";
+	
+	printf("len: %d \n", ft_strlen(s));
+	printf("--------------- printf TEST -----------------\n");
+	printf("Case 1: len > width, no dot: 가변인자 모두 출력 \n");
+	printf("%3s", s);
 	printf("\n");
-	printf("ft_printf: \n");
-	ft_printf("abcdefef");
+	printf("Case 2: len < width, no dot: len 출력 후 남는 공간 공백 \n");
+	printf("%10s", s); // - 옵션은 c에서 구현했으니 s에서도 동일하다.
 	printf("\n");
-	printf("-----------------------------\n");
+	printf("Case 3: len > dot, no width: dot만큼 자른 disp를 출력\n");
+	printf("%.4s", s);
+	printf("\n");
+	printf("Case 4: len > dot, width < disp_len: case1과 같이 width가 무시 \n");
+	printf("%3.4s", s);
+	printf("\n");
+	printf("Case 5: len > dot, width > disp_len 2만큼의 공백 \n");
+	printf("%7.4s", s);
+	printf("\n");
+	printf("Case 6: len < dot, no width dot이 없는 것 처럼 생각\n");
+	printf("%.9s", s);
+	printf("\n");
+	printf("Case 7: len < dot, width < len no dot, no width\n");
+	printf("%7.9s", s);
+	printf("\n");
+	printf("Case 8:  len < dot, width > len 3만큼의 공백 \n");
+	printf("%10.9s", s);
+	printf("\n");
+
+	printf("------------- ft_ printf TEST ---------------\n");
+	ft_printf("%s", s);
+	printf("Case 3: len > dot, no width: dot만큼 자른 disp를 출력\n");
+	ft_printf("%.4s", s);
+	printf("\n");
+	printf("Case 6: len < dot, no width dot이 없는 것 처럼 생각\n");
+	ft_printf("%.9s", s);
+	printf("\n");
 }
