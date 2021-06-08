@@ -6,7 +6,7 @@
 /*   By: seuan <seuan@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/08 10:01:42 by seuan             #+#    #+#             */
-/*   Updated: 2021/06/08 17:16:08 by seuan            ###   ########.fr       */
+/*   Updated: 2021/06/08 17:58:10 by seuan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ int	print_str_prec(char *str, int prec)
 	return (cnt);
 }
 
-int ft_print_string(char *str, t_flags flags)
+int	ft_print_string(char *str, t_flags flags)
 {
 	int cnt;
 	int len;
