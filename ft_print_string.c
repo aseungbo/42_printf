@@ -6,7 +6,7 @@
 /*   By: seuan <seuan@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/08 10:01:42 by seuan             #+#    #+#             */
-/*   Updated: 2021/06/08 15:39:20 by seuan            ###   ########.fr       */
+/*   Updated: 2021/06/08 17:16:08 by seuan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,12 +30,22 @@
 
 #include "ft_printf.h"
 
-int	print_str_dot(char *str, t_flags flags)
+size_t	strlen(const char *s)
+{
+	int cnt;
+
+	cnt = 0;
+	while (s[cnt])
+		cnt++;
+	return (cnt);
+}
+
+int	print_str_prec(char *str, int prec)
 {
 	int	cnt;
 
 	cnt = 0;
-	while (str[cnt] && cnt < flags.dot)
+	while (str[cnt] && cnt < prec)
 		cnt += ft_putchar(str[cnt]);
 	return (cnt);
 }
@@ -43,15 +53,34 @@ int	print_str_dot(char *str, t_flags flags)
 int ft_print_string(char *str, t_flags flags)
 {
 	int cnt;
-	// int len;
+	int len;
 
 	cnt = 0;
-	// len = ft_strlen(str);
+	len = strlen(str);
+	// printf("dot: %d, width: %d len: %d \n", flags.dot, flags.width, len);
 	if (str == NULL)
 		str = "(NULL)";
-	if (flags.dot > -1)
-		printf("width: %d \n", flags.width);
-		printf("dot: %d \n", flags.dot);
-		print_str_dot(str, flags);
+	else if (flags.dot >= 0 && flags.dot >= flags.width)
+		print_str_prec(str, flags.dot);
+	else if (flags.dot >= 0 && flags.dot < flags.width && len > flags.dot)
+	{
+		ft_width(flags.width, flags.dot, 0);
+		print_str_prec(str, flags.dot);
+	}
+	else if (len < flags.dot && flags.width > len)
+	{
+		ft_width(flags.width, len, 0);
+		print_str_prec(str, len);
+	}
+	else if (flags.dot == -1)
+	{
+		if (len > flags.width)
+			print_str_prec(str, len);
+		else
+		{
+			ft_width(flags.width, len, 0);
+			print_str_prec(str, len);
+		}
+	}
 	return (cnt);
 }
