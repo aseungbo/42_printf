@@ -6,7 +6,7 @@
 /*   By: seuan <seuan@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/07 10:07:48 by seuan             #+#    #+#             */
-/*   Updated: 2021/06/10 02:20:44 by seuan            ###   ########.fr       */
+/*   Updated: 2021/06/10 05:06:12 by seuan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,5 +42,7 @@ int	ft_width(int width, int minus, int zero);
 int	ft_isdigit(int c);
 char	*itoa(int n);
 char	*u_itoa(unsigned int n);
-size_t	strlen(const char *s);
+char	*ft_base(unsigned long long n, int base);
+size_t	pf_strlen(const char *s);
+char		*pf_strdup(const char *s);
 #endif

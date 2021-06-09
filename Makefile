@@ -10,11 +10,13 @@ SRCS	= ft_printf.c \
 			ft_print_char.c \
 			ft_print_string.c \
 			ft_print_u.c \
+			ft_print_base.c \
 			ft_spec.c \
 			ft_width.c \
 			ft_putchar.c \
 			ft_isdigit.c \
 			ft_print_int.c \
+			ft_base.c \
 			itoa.c \
 			u_itoa.c \
 
@@ -22,11 +24,13 @@ SRCS	= ft_printf.c \
 SURPL_O = ft_print_char.o \
 			ft_print_string.o \
 			ft_print_u.o \
+			ft_print_base.o \
 			ft_spec.o \
 			ft_width.o \
 			ft_putchar.o \
 			ft_isdigit.o \
 			ft_print_int.o \
+			ft_base.o \
 			itoa.o \
 			u_itoa.o \
 

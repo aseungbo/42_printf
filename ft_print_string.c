@@ -6,7 +6,7 @@
 /*   By: seuan <seuan@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/08 10:01:42 by seuan             #+#    #+#             */
-/*   Updated: 2021/06/09 16:55:10 by seuan            ###   ########.fr       */
+/*   Updated: 2021/06/10 05:08:11 by seuan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,13 +24,13 @@
 // .dotision
 // dot < 주어진 값의 길이 dot만큼 자른 후 출력
 // dot >= 주어진 값의 길이 
-// 1. 문자열의 길이 측정 strlen
+// 1. 문자열의 길이 측정 pf_strlen
 // 2. dot
 // 3. width
 
 #include "ft_printf.h"
 
-size_t	strlen(const char *s)
+size_t	pf_strlen(const char *s)
 {
 	int i;
 
@@ -58,11 +58,11 @@ int	ft_print_string(char *str, t_flags flags)
 	size_t len;
 
 	cnt = 0;
-	len = strlen(str);
+	len = pf_strlen(str);
 	// printf("str: %s\n", str);
 	if (!str)
 		str = "(null)";
-	len = strlen(str);
+	len = pf_strlen(str);
 	if (flags.dot >= 0 && (size_t)flags.dot > len)
 		flags.dot = len;
 	// minus 처리 추가

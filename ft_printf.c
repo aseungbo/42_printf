@@ -6,19 +6,19 @@
 /*   By: seuan <seuan@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/07 10:07:52 by seuan             #+#    #+#             */
-/*   Updated: 2021/06/10 02:37:08 by seuan            ###   ########.fr       */
+/*   Updated: 2021/06/10 05:43:40 by seuan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-char		*strdup(const char *s)
+char		*pf_strdup(const char *s)
 {
 	int		s_len;
 	int		idx;
 	char	*p;
 
-	s_len = strlen(s);
+	s_len = pf_strlen(s);
 	p = (char *)malloc(sizeof(char) * (s_len + 1));
 	if (!p)
 		return (NULL);
@@ -111,7 +111,7 @@ int	ft_printf(const char *input, ...)
 
 	i = 0;
 	cnt = 0;
-	format = strdup(input);
+	format = pf_strdup(input);
 	va_start(ap, input);
 	while (format[i] != '\0')
 	{
@@ -135,7 +135,5 @@ int	ft_printf(const char *input, ...)
 // int	main()
 // {
 // 	// ??????
-// 	printf("%.u\n", 0);
-// 	ft_printf("%.u", 0);
-// 	printf("\n");
+// 	printf("base: %s\n", ft_base(123, 16));
 // }

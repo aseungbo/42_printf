@@ -42,7 +42,7 @@ int ft_print_int(int n, t_flags flags)
 		flags.width--;
 	}
 	dum = itoa(n);
-	len = strlen(dum);
+	len = pf_strlen(dum);
     // 2. prec
     if (flags.dot >= 0 && (size_t)flags.dot < len)
 		flags.dot = len;
