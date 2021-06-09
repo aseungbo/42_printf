@@ -30,14 +30,14 @@ int ft_print_int(int n, t_flags flags)
 
 	if (n == 0 && flags.dot == 0)
 	{
-		cnt += ft_width(flags.width, flags.dot, flags.zero);
+		cnt += ft_width(flags.width, 0, 0);
 		return (cnt);
 	}
 	if (n < 0 && (flags.zero == 1 || flags.dot >= 0))
 	{
 		// prec off
 		if (flags.dot == -1 && flags.zero == 1)
-			ft_putchar('-');
+			cnt += ft_putchar('-');
 		n *= -1;
 		flags.width--;
 	}
@@ -49,8 +49,8 @@ int ft_print_int(int n, t_flags flags)
     // 왼쪽 정렬
     if (flags.minus == 1)
 	{
-		if (dum_n < 0 && flags.dot >= 0)
-			ft_putchar('-');
+		if (dum_n < 0 && flags.dot != -1)
+			cnt += ft_putchar('-');
 		if (flags.dot >= 0)
 		{
 			cnt += ft_width(flags.dot, len, 1);
@@ -70,8 +70,8 @@ int ft_print_int(int n, t_flags flags)
 		cnt += ft_width(flags.width, len, flags.zero);
     if (flags.minus == 0)
 	{
-		if (dum_n < 0 && flags.dot >= 0)
-			ft_putchar('-');
+		if (dum_n < 0 && flags.dot != -1)
+			cnt += ft_putchar('-');
 		if (flags.dot >= 0)
 		{
 			if ((size_t)flags.dot > len)
