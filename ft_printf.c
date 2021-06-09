@@ -6,11 +6,31 @@
 /*   By: seuan <seuan@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/07 10:07:52 by seuan             #+#    #+#             */
-/*   Updated: 2021/06/08 17:44:10 by seuan            ###   ########.fr       */
+/*   Updated: 2021/06/09 14:56:07 by seuan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
+
+char		*strdup(const char *s)
+{
+	int		s_len;
+	int		idx;
+	char	*p;
+
+	s_len = strlen(s);
+	p = (char *)malloc(sizeof(char) * (s_len + 1));
+	if (!p)
+		return (NULL);
+	idx = 0;
+	while (s[idx])
+	{
+		p[idx] = s[idx];
+		idx++;
+	}
+	p[idx] = '\0';
+	return (p);
+}
 
 void	init_flags(t_flags *flags)
 {
@@ -26,6 +46,9 @@ int	ft_flag_parse(const char *format, int i, t_flags *flags, va_list ap)
 {
 	while (format[i])
 	{
+		if (!ft_isdigit(format[i]) && !ft_type_list(format[i])
+		&& !ft_flags_list(format[i]))
+			break ;
 		if (format[i] == '-')
 			flags->minus = 1;
 		if (format[i] == '*')
@@ -41,7 +64,10 @@ int	ft_flag_parse(const char *format, int i, t_flags *flags, va_list ap)
 		if (format[i] == '.')
 		{
 			if (format[i + 1] == '*')
+			{
 				flags->dot = va_arg(ap, int);
+				i++;
+			}
 			else
 			{
 				flags->dot = 0;
@@ -67,16 +93,18 @@ int	ft_flag_parse(const char *format, int i, t_flags *flags, va_list ap)
 	return (i);
 }
 
-int	ft_printf(const char *format, ...)
+int	ft_printf(const char *input, ...)
 {
 	int		i;
 	int		cnt;
+	const char	*format;
 	va_list	ap;
 	t_flags	flags;
 
 	i = 0;
 	cnt = 0;
-	va_start(ap, format);
+	format = strdup(input);
+	va_start(ap, input);
 	while (format[i] != '\0')
 	{
 		if (format[i] == '%' && format[i + 1])
@@ -85,12 +113,12 @@ int	ft_printf(const char *format, ...)
 			i = ft_flag_parse(format, ++i, &flags, ap);
 			if (ft_type_list(format[i]))
 				cnt += ft_spec((char)flags.type, flags, ap);
-			i++;
 		}
 		else if (format[i] != '%')
 			cnt += ft_putchar(format[i]);
 		i++;
 	}
+	free((char *)format);
 	va_end(ap);
 	return (cnt);
 }
@@ -98,38 +126,21 @@ int	ft_printf(const char *format, ...)
 // test
 // int	main()
 // {
-// 	char c = 'a';
+// 	// char *s = "42seoul";
+// 	// char c = 'a';
 
-// 	printf("------------printf------------------\n");
-// 	printf("-->|%-4.c|<--\n", c);
-// 	printf("-->|%-4c|<--\n", c);
-// 	printf("-->|%-3.c|<--\n", c);
-// 	printf("-->|%-3c|<--\n", c);
-// 	printf("-->|%-2.c|<--\n", c);
-// 	printf("-->|%-2c|<--\n", c);
-// 	printf("-->|%-3.c|<--\n", c);
-// 	printf("-->|%-3c|<--\n", c);
-// 	printf("-->|%-4.c|<--\n", c);
-// 	printf("-->|%-4c|<--\n", c);
-// 	printf("------------ft_printf------------------\n");
-// 	ft_printf("-->|%-4.c|<--", c);
-// 	printf("\n");
-// 	ft_printf("-->|%-4c|<--", c);
-// 	printf("\n");
-// 	ft_printf("-->|%-3.c|<--", c);
-// 	printf("\n");
-// 	ft_printf("-->|%-3c|<--", c);
-// 	printf("\n");
-// 	ft_printf("-->|%-2.c|<--", c);
-// 	printf("\n");
-// 	ft_printf("-->|%-2c|<--", c);
-// 	printf("\n");
-// 	ft_printf("-->|%-3.c|<--", c);
-// 	printf("\n");
-// 	ft_printf("-->|%-3c|<--", c);
-// 	printf("\n");
-// 	ft_printf("-->|%-4.c|<--\n", c);
-// 	printf("\n");
-// 	ft_printf("-->|%-4c|<--\n", c);
-// 	printf("\n");
+// 	// printf("hello, %s.\n", "gavin");
+// 	// ft_printf("hello, %s.", "gavin");
+// 	// printf("\n");
+// 	// printf("%s  %s\n", "hello", "world");
+// 	// ft_printf("%s  %s", "hello", "world");
+// 	// printf("\n");
+// 	// printf("..%s stuff %s\n", "a", "b");
+// 	// ft_printf("..%s stuff %s", "a", "b");
+// 	// printf("\n");
+// 	// printf("this %s is empty\n", " ");
+// 	// ft_printf("this %s is empty", " ");
+// 	// printf("\n");
+// 	printf("%.*s \n", 3, "a");
+// 	ft_printf("%.*s \n", 3, "a");
 // }

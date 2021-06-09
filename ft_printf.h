@@ -6,7 +6,7 @@
 /*   By: seuan <seuan@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/07 10:07:48 by seuan             #+#    #+#             */
-/*   Updated: 2021/06/08 15:24:19 by seuan            ###   ########.fr       */
+/*   Updated: 2021/06/09 09:40:10 by seuan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 # include <stdarg.h>
 # include <stdio.h>
 # include <unistd.h>
+# include <stdlib.h>
 
 typedef struct	s_flags
 {
@@ -36,4 +37,5 @@ int	ft_type_list(int c);
 int	ft_flags_list(int c);
 int	ft_width(int width, int minus, int zero);
 int	ft_isdigit(int c);
+size_t	strlen(const char *s);
 #endif

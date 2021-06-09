@@ -6,7 +6,7 @@
 /*   By: seuan <seuan@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/08 10:01:42 by seuan             #+#    #+#             */
-/*   Updated: 2021/06/08 17:58:10 by seuan            ###   ########.fr       */
+/*   Updated: 2021/06/09 14:53:15 by seuan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,12 +32,14 @@
 
 size_t	strlen(const char *s)
 {
-	int cnt;
+	int i;
 
-	cnt = 0;
-	while (s[cnt])
-		cnt++;
-	return (cnt);
+	i = 0;
+	if (!s)
+		return 0;
+	while (s[i] != '\0')
+		i++;
+	return (i);
 }
 
 int	print_str_prec(char *str, int prec)
@@ -53,33 +55,43 @@ int	print_str_prec(char *str, int prec)
 int	ft_print_string(char *str, t_flags flags)
 {
 	int cnt;
-	int len;
+	size_t len;
 
 	cnt = 0;
 	len = strlen(str);
-	// printf("dot: %d, width: %d len: %d \n", flags.dot, flags.width, len);
-	if (str == NULL)
-		str = "(NULL)";
-	else if (flags.dot >= 0 && flags.dot >= flags.width)
-		print_str_prec(str, flags.dot);
-	else if (flags.dot >= 0 && flags.dot < flags.width && len > flags.dot)
+	// printf("str: %s\n", str);
+	if (!str)
+		str = "(null)";
+	len = strlen(str);
+	if (flags.dot >= 0 && (size_t)flags.dot > len)
+		flags.dot = len;
+	// minus 처리 추가
+	if (flags.minus == 1)
 	{
-		ft_width(flags.width, flags.dot, 0);
-		print_str_prec(str, flags.dot);
-	}
-	else if (len < flags.dot && flags.width > len)
-	{
-		ft_width(flags.width, len, 0);
-		print_str_prec(str, len);
-	}
-	else if (flags.dot == -1)
-	{
-		if (len > flags.width)
-			print_str_prec(str, len);
+		if (flags.dot >= 0)
+		{
+			cnt += ft_width(flags.dot, len, 0);
+			cnt += print_str_prec(str, flags.dot);
+		}
 		else
 		{
-			ft_width(flags.width, len, 0);
-			print_str_prec(str, len);
+			cnt += print_str_prec(str, len);
+		}
+	}
+	if (flags.dot >= 0)
+		cnt += ft_width(flags.width, flags.dot, 0);
+	else
+		cnt += ft_width(flags.width, len, 0);
+	if (flags.minus == 0)
+	{
+		if (flags.dot >= 0)
+		{
+			cnt += ft_width(flags.dot, len, 0);
+			cnt += print_str_prec(str, flags.dot);
+		}
+		else
+		{
+			cnt += print_str_prec(str, len);
 		}
 	}
 	return (cnt);
