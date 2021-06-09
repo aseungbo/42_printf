@@ -6,7 +6,7 @@
 /*   By: seuan <seuan@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/07 10:07:52 by seuan             #+#    #+#             */
-/*   Updated: 2021/06/09 17:56:45 by seuan            ###   ########.fr       */
+/*   Updated: 2021/06/10 01:11:00 by seuan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,7 @@ int	ft_flag_parse(const char *format, int i, t_flags *flags, va_list ap)
 			if (flags->width < 0)
 			{
 				flags->minus = 1;
+				flags->zero = 0;
 				flags->width *= -1;
 			}
 		}
@@ -71,6 +72,8 @@ int	ft_flag_parse(const char *format, int i, t_flags *flags, va_list ap)
 			if (format[i + 1] == '*')
 			{
 				flags->dot = va_arg(ap, int);
+				if (flags->minus == 1)
+					flags->zero = 0;
 				i++;
 			}
 			else
@@ -129,13 +132,17 @@ int	ft_printf(const char *input, ...)
 }
 
 // test
-// int	main()
-// {
-// 	printf("------------------\n");
-// 	printf("%08.5d\n", 34);
-// 	ft_printf("%08.5d\n", 34);
-// 	printf("\n");
-// 	printf("%05d\n", 43);
-// 	ft_printf("%05d", 43);
-// 	printf("\n");
-// }
+int	main()
+{
+	// ??????
+	printf("-->|%0.*d|<--\n", -4, -135);
+	ft_printf("-->|%0.*d|<--\n", -4, -135);
+	printf("\n");
+ 	printf("-->|%0.*d|<--\n", -3, -135);
+ 	ft_printf("-->|%0.*d|<--\n", -3, -135);
+	printf("\n");
+ 	printf("-->|%0.*d|<--\n", -2, -135);
+ 	ft_printf("-->|%0.*d|<--\n", -2, -135);
+	printf("\n");
+	
+}
