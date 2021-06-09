@@ -6,7 +6,7 @@
 /*   By: seuan <seuan@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/07 10:07:52 by seuan             #+#    #+#             */
-/*   Updated: 2021/06/09 14:56:07 by seuan            ###   ########.fr       */
+/*   Updated: 2021/06/09 17:56:45 by seuan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,8 +49,13 @@ int	ft_flag_parse(const char *format, int i, t_flags *flags, va_list ap)
 		if (!ft_isdigit(format[i]) && !ft_type_list(format[i])
 		&& !ft_flags_list(format[i]))
 			break ;
+		if (format[i] == '0' && flags->width == 0 && flags->minus == 0)
+			flags->zero = 1;
 		if (format[i] == '-')
+		{
 			flags->minus = 1;
+			flags->zero = 0;
+		}
 		if (format[i] == '*')
 		{
 			flags->star = 1;
@@ -126,21 +131,11 @@ int	ft_printf(const char *input, ...)
 // test
 // int	main()
 // {
-// 	// char *s = "42seoul";
-// 	// char c = 'a';
-
-// 	// printf("hello, %s.\n", "gavin");
-// 	// ft_printf("hello, %s.", "gavin");
-// 	// printf("\n");
-// 	// printf("%s  %s\n", "hello", "world");
-// 	// ft_printf("%s  %s", "hello", "world");
-// 	// printf("\n");
-// 	// printf("..%s stuff %s\n", "a", "b");
-// 	// ft_printf("..%s stuff %s", "a", "b");
-// 	// printf("\n");
-// 	// printf("this %s is empty\n", " ");
-// 	// ft_printf("this %s is empty", " ");
-// 	// printf("\n");
-// 	printf("%.*s \n", 3, "a");
-// 	ft_printf("%.*s \n", 3, "a");
+// 	printf("------------------\n");
+// 	printf("%08.5d\n", 34);
+// 	ft_printf("%08.5d\n", 34);
+// 	printf("\n");
+// 	printf("%05d\n", 43);
+// 	ft_printf("%05d", 43);
+// 	printf("\n");
 // }
