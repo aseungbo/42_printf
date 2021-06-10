@@ -28,6 +28,9 @@ int ft_print_int(int n, t_flags flags)
     cnt = 0;
 	dum_n = n;
 
+	// prec이 음수로 나오는 경우 해결
+	if (flags.dot < 0)
+		flags.dot = -1;
 	if (n == 0 && flags.dot == 0)
 	{
 		cnt += ft_width(flags.width, 0, 0);
@@ -49,7 +52,7 @@ int ft_print_int(int n, t_flags flags)
     // 왼쪽 정렬
     if (flags.minus == 1)
 	{
-		if (dum_n < 0 && flags.dot != -1)
+		if (dum_n < 0 && flags.dot >= 0)
 			cnt += ft_putchar('-');
 		if (flags.dot >= 0)
 		{
@@ -70,7 +73,7 @@ int ft_print_int(int n, t_flags flags)
 		cnt += ft_width(flags.width, len, flags.zero);
     if (flags.minus == 0)
 	{
-		if (dum_n < 0 && flags.dot != -1)
+		if (dum_n < 0 && flags.dot >= 0)
 			cnt += ft_putchar('-');
 		if (flags.dot >= 0)
 		{
