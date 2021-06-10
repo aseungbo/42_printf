@@ -20,7 +20,6 @@ SRCS	= ft_printf.c \
 			itoa.c \
 			u_itoa.c \
 
-
 SURPL_O = ft_print_char.o \
 			ft_print_string.o \
 			ft_print_u.o \

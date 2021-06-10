@@ -6,7 +6,7 @@
 /*   By: seuan <seuan@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/07 10:07:48 by seuan             #+#    #+#             */
-/*   Updated: 2021/06/10 05:06:12 by seuan            ###   ########.fr       */
+/*   Updated: 2021/06/10 10:56:04 by seuan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@ int	ft_print_char(char c, t_flags flags);
 int	ft_print_string(char *str, t_flags flag);
 int ft_print_int(int n, t_flags flags);
 int	ft_print_u(unsigned int unsn, t_flags flags);
+int	ft_print_base(unsigned int unsn, t_flags flags);
 int	print_str_prec(char *str, int prec);
 int	ft_spec(int c, t_flags flags, va_list ap);
 int	ft_type_list(int c);
@@ -42,7 +43,7 @@ int	ft_width(int width, int minus, int zero);
 int	ft_isdigit(int c);
 char	*itoa(int n);
 char	*u_itoa(unsigned int n);
-char	*ft_base(unsigned long long n, int base);
+char	*ft_base(unsigned int n, int base);
 size_t	pf_strlen(const char *s);
 char		*pf_strdup(const char *s);
 #endif

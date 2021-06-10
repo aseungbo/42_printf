@@ -1,9 +1,9 @@
 #include "ft_printf.h"
 
-char	*ft_base(unsigned long long n, int base)
+char	*ft_base(unsigned int n, int base)
 {
 	char    *str;
-    unsigned long long dum_n;
+    unsigned int dum_n;
     int     cnt;
  
     dum_n = n;
@@ -15,17 +15,16 @@ char	*ft_base(unsigned long long n, int base)
 		n /= base;
 		cnt++;
 	}
-	
 	if (!(str = (char *)malloc(sizeof(char) * (cnt + 1))))
 		return (NULL);
 	str[cnt] = '\0';
 	while (cnt--)
 	{
         if ((dum_n % base) < 10)
-            str[cnt - 1] = (dum_n % base) + 48;
+            str[cnt] = (dum_n % base) + 48;
         else
-            str[cnt - 1] = (dum_n % base) + 55;
-		dum_n /= base;
+            str[cnt] = (dum_n % base) + 55;
+        dum_n /= base;
 	}
 	return (str);
 }
