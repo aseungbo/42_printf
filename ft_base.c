@@ -1,9 +1,9 @@
 #include "ft_printf.h"
 
-char	*ft_base(unsigned int n, int base)
+char	*ft_base(unsigned long long n, int base)
 {
 	char    *str;
-    unsigned int dum_n;
+    unsigned long long dum_n;
     int     cnt;
  
     dum_n = n;

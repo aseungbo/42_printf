@@ -65,8 +65,8 @@ int	ft_print_base(unsigned int unsn, t_flags flags)
 			}
 			else
 			{
-			cnt += ft_width(flags.dot, len, flags.zero);
-			cnt += print_str_prec(str, flags.dot);
+				cnt += ft_width(flags.dot, len, flags.zero);
+				cnt += print_str_prec(str, flags.dot);
 			}
 		}
 		else

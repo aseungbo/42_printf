@@ -6,7 +6,7 @@
 /*   By: seuan <seuan@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/08 10:19:03 by seuan             #+#    #+#             */
-/*   Updated: 2021/06/10 10:57:42 by seuan            ###   ########.fr       */
+/*   Updated: 2021/06/10 11:19:58 by seuan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ int		ft_spec(int c, t_flags flags, va_list ap)
 		cnt = ft_print_u(va_arg(ap, unsigned int), flags);
 	else if (c == 'x' || c == 'X')
 		cnt = ft_print_base(va_arg(ap, unsigned int), flags);
-	// else if (c == 'p')
-	// 	cnt = ft_print_pointer(va_arg(ap, unsigned long long), flags);
+	else if (c == 'p')
+		cnt = ft_print_pointer(va_arg(ap, unsigned long long), flags);
 	return (cnt);
 }

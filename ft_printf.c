@@ -6,7 +6,7 @@
 /*   By: seuan <seuan@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/07 10:07:52 by seuan             #+#    #+#             */
-/*   Updated: 2021/06/10 11:15:45 by seuan            ###   ########.fr       */
+/*   Updated: 2021/06/10 14:13:44 by seuan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -134,7 +134,19 @@ int	ft_printf(const char *input, ...)
 // test
 // int	main()
 // {
-// 	printf("num: %x \n", 1111);
-// 	ft_printf("num: %x", 1111);
+// 	int integer = 123;
+// 	int* p = &integer;
+	
+// 	printf("-->|%-16.p|<--\n", p);
+// 	ft_printf("-->|%-16.p|<-- \n ", p);
+// 	printf("\n");
+// 	printf("-->|%*.p|<--\n", 3, p);
+// 	ft_printf("-->|%*.p|<--\n", 3, p);
+// 	printf("\n");
+// 	printf("-->|%*.p|<--\n", 10, p);
+// 	ft_printf("-->|%*.p|<--\n", 10, p);
+// 	printf("\n");
+// 	printf("%-1.p|<--\n", p);
+// 	ft_printf("%-1.p|<--\n", p);
 // 	printf("\n");
 // }

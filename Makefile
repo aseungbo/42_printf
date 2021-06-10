@@ -11,6 +11,7 @@ SRCS	= ft_printf.c \
 			ft_print_string.c \
 			ft_print_u.c \
 			ft_print_base.c \
+			ft_print_pointer.c \
 			ft_spec.c \
 			ft_width.c \
 			ft_putchar.c \
@@ -24,6 +25,7 @@ SURPL_O = ft_print_char.o \
 			ft_print_string.o \
 			ft_print_u.o \
 			ft_print_base.o \
+			ft_print_pointer.o \
 			ft_spec.o \
 			ft_width.o \
 			ft_putchar.o \

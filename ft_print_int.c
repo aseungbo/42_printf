@@ -84,8 +84,8 @@ int ft_print_int(int n, t_flags flags)
 			}
 			else
 			{
-			cnt += ft_width(flags.dot, len, flags.zero);
-			cnt += print_str_prec(dum, flags.dot);
+				cnt += ft_width(flags.dot, len, flags.zero);
+				cnt += print_str_prec(dum, flags.dot);
 			}
 		}
 		else
