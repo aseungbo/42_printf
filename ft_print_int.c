@@ -6,7 +6,7 @@
 /*   By: seuan <seuan@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/10 15:05:53 by seuan             #+#    #+#             */
-/*   Updated: 2021/06/10 16:19:37 by seuan            ###   ########.fr       */
+/*   Updated: 2021/06/10 17:53:53 by seuan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ int ft_print_int(int n, t_flags flags)
 	}
 	if (n < 0 && (flags.zero == 1 || flags.dot >= 0))
 	{
-		if (flags.dot == -1 && flags.zero == 1)
+		if (flags.dot == -1 && flags.zero == 1 && n != -2147483648)
 			cnt += pf_putchar('-');
 		n *= -1;
 		flags.width--;
@@ -42,7 +42,7 @@ int ft_print_int(int n, t_flags flags)
 		flags.dot = len;
     if (flags.minus == 1)
 	{
-		if (dum_n < 0 && flags.dot >= 0)
+		if (dum_n < 0 && flags.dot >= 0 && n != -2147483648)
 			cnt += pf_putchar('-');
 		if (flags.dot >= 0)
 		{
@@ -62,7 +62,7 @@ int ft_print_int(int n, t_flags flags)
 		cnt += ft_width(flags.width, len, flags.zero);
     if (flags.minus == 0)
 	{
-		if (dum_n < 0 && flags.dot >= 0)
+		if (dum_n < 0 && flags.dot >= 0 && n != -2147483648)
 			cnt += pf_putchar('-');
 		if (flags.dot >= 0)
 		{
