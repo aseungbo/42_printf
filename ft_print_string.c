@@ -6,7 +6,7 @@
 /*   By: seuan <seuan@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/08 10:01:42 by seuan             #+#    #+#             */
-/*   Updated: 2021/06/10 05:08:11 by seuan            ###   ########.fr       */
+/*   Updated: 2021/06/10 15:09:46 by seuan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ int	print_str_prec(char *str, int prec)
 
 	cnt = 0;
 	while (str[cnt] && cnt < prec)
-		cnt += ft_putchar(str[cnt]);
+		cnt += pf_putchar(str[cnt]);
 	return (cnt);
 }
 
@@ -59,13 +59,11 @@ int	ft_print_string(char *str, t_flags flags)
 
 	cnt = 0;
 	len = pf_strlen(str);
-	// printf("str: %s\n", str);
 	if (!str)
 		str = "(null)";
 	len = pf_strlen(str);
 	if (flags.dot >= 0 && (size_t)flags.dot > len)
 		flags.dot = len;
-	// minus 처리 추가
 	if (flags.minus == 1)
 	{
 		if (flags.dot >= 0)

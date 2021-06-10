@@ -9,7 +9,6 @@ int	ft_print_u(unsigned int unsn, t_flags flags)
     cnt = 0;
     dum = u_itoa(unsn);
     len = pf_strlen(dum);
-    // unsigned int: 0 ~ 4,294,967,295
     unsn = (unsigned int)(4294967296 + unsn);
     if (unsn == 0 && flags.dot == 0)
 	{

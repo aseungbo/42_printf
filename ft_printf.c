@@ -6,7 +6,7 @@
 /*   By: seuan <seuan@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/07 10:07:52 by seuan             #+#    #+#             */
-/*   Updated: 2021/06/10 15:00:51 by seuan            ###   ########.fr       */
+/*   Updated: 2021/06/10 15:12:47 by seuan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ int	ft_flag_parse(const char *format, int i, t_flags *flags, va_list ap)
 {
 	while (format[i])
 	{
-		if (!ft_isdigit(format[i]) && !ft_type_list(format[i])
+		if (!pf_isdigit(format[i]) && !ft_type_list(format[i])
 		&& !ft_flags_list(format[i]))
 			break ;
 		if (format[i] == '0' && flags->width == 0 && flags->minus == 0)
@@ -79,13 +79,13 @@ int	ft_flag_parse(const char *format, int i, t_flags *flags, va_list ap)
 			else
 			{
 				flags->dot = 0;
-				while (ft_isdigit(format[++i]))
+				while (pf_isdigit(format[++i]))
 				{
 					flags->dot = (flags->dot * 10) + (format[i] - '0');
 				}
 			}
 		}
-		if (ft_isdigit(format[i]))
+		if (pf_isdigit(format[i]))
 		{
 			if (flags->star == 1)
 				flags->width = 0;
@@ -123,30 +123,10 @@ int	ft_printf(const char *input, ...)
 				cnt += ft_spec((char)flags.type, flags, ap);
 		}
 		else if (format[i] != '%')
-			cnt += ft_putchar(format[i]);
+			cnt += pf_putchar(format[i]);
 		i++;
 	}
 	free((char *)format);
 	va_end(ap);
 	return (cnt);
 }
-
-// test
-// int	main()
-// {
-// 	int integer = 123;
-// 	int* p = &integer;
-	
-// 	printf("-->|%-16.p|<--\n", p);
-// 	ft_printf("-->|%-16.p|<-- \n ", p);
-// 	printf("\n");
-// 	printf("-->|%*.p|<--\n", 3, p);
-// 	ft_printf("-->|%*.p|<--\n", 3, p);
-// 	printf("\n");
-// 	printf("-->|%*.p|<--\n", 10, p);
-// 	ft_printf("-->|%*.p|<--\n", 10, p);
-// 	printf("\n");
-// 	printf("%-1.p|<--\n", p);
-// 	ft_printf("%-1.p|<--\n", p);
-// 	printf("\n");
-// }

@@ -2,8 +2,6 @@
 
 int ft_print_pointer(unsigned long long ull, t_flags flags)
 {
-    // 주소 앞에 0x 붙일 것
-    // 진수 변환 시 대문자이므로 소문자로 변환
     int cnt;
     char *str;
     size_t len;

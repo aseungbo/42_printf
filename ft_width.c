@@ -8,9 +8,9 @@ int		ft_width(int width, int minus, int zero)
 	while (width - minus > 0)
 	{
 		if (zero)
-			ft_putchar('0');
+			pf_putchar('0');
 		else
-			ft_putchar(' ');
+			pf_putchar(' ');
 		width -= 1;
 		cnt++;
 	}

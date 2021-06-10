@@ -6,7 +6,7 @@
 /*   By: seuan <seuan@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/07 10:07:48 by seuan             #+#    #+#             */
-/*   Updated: 2021/06/10 11:31:55 by seuan            ###   ########.fr       */
+/*   Updated: 2021/06/10 15:09:09 by seuan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ typedef struct	s_flags
 	int star;
 } t_flags;
 
-int ft_putchar(char c);
+int pf_putchar(char c);
 int ft_printf(const char *args, ...);
 int	ft_print_char(char c, t_flags flags);
 int	ft_print_string(char *str, t_flags flag);
@@ -41,8 +41,8 @@ int	ft_spec(int c, t_flags flags, va_list ap);
 int	ft_type_list(int c);
 int	ft_flags_list(int c);
 int	ft_width(int width, int minus, int zero);
-int	ft_isdigit(int c);
-char	*itoa(int n);
+int	pf_isdigit(int c);
+char	*pf_itoa(int n);
 char	*u_itoa(unsigned int n);
 char	*ft_base(unsigned long long n, int base);
 size_t	pf_strlen(const char *s);

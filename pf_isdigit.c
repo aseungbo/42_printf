@@ -1,26 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_print_char.c                                    :+:      :+:    :+:   */
+/*   ft_isdigit.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: seuan <seuan@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/06/08 10:00:03 by seuan             #+#    #+#             */
-/*   Updated: 2021/06/10 15:10:00 by seuan            ###   ########.fr       */
+/*   Created: 2021/06/10 15:06:24 by seuan             #+#    #+#             */
+/*   Updated: 2021/06/10 15:07:14 by seuan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int	ft_print_char(char c, t_flags flags)
+int	pf_isdigit(int c)
 {
-	int	cnt;
-
-	cnt = 0;
-	if (flags.minus == 1)
-		cnt += pf_putchar(c);
-	cnt += ft_width(flags.width, 1, flags.zero);
-	if (flags.minus == 0)
-		cnt += pf_putchar(c);
-	return (cnt);
+	if (48 <= c && c <= 57)
+		return (1);
+	return (0);
 }

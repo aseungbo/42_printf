@@ -36,7 +36,7 @@ char	*positive_num(int n, int n_cnt)
 	return (str);
 }
 
-char	*itoa(int n)
+char	*pf_itoa(int n)
 {
 	int				n_cnt;
 	unsigned int	num;
