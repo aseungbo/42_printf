@@ -6,31 +6,11 @@
 /*   By: seuan <seuan@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/07 10:07:52 by seuan             #+#    #+#             */
-/*   Updated: 2021/06/10 15:12:47 by seuan            ###   ########.fr       */
+/*   Updated: 2021/06/10 16:17:39 by seuan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
-
-char		*pf_strdup(const char *s)
-{
-	int		s_len;
-	int		idx;
-	char	*p;
-
-	s_len = pf_strlen(s);
-	p = (char *)malloc(sizeof(char) * (s_len + 1));
-	if (!p)
-		return (NULL);
-	idx = 0;
-	while (s[idx])
-	{
-		p[idx] = s[idx];
-		idx++;
-	}
-	p[idx] = '\0';
-	return (p);
-}
 
 void	init_flags(t_flags *flags)
 {

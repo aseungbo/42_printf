@@ -16,12 +16,11 @@ SRCS	= ft_printf.c \
 			ft_spec.c \
 			ft_width.c \
 			ft_base.c \
-			pf_putchar.c \
-			pf_isdigit.c \
 			pf_itoa.c \
 			u_itoa.c \
+			ft_utils.c \
 
-SURPL_O = ft_print_char.o \
+SRC_O = ft_print_char.o \
 			ft_print_string.o \
 			ft_print_u.o \
 			ft_print_base.o \
@@ -30,11 +29,9 @@ SURPL_O = ft_print_char.o \
 			ft_spec.o \
 			ft_width.o \
 			ft_base.o \
-			pf_putchar.o \
-			pf_isdigit.o \
 			pf_itoa.o \
 			u_itoa.o \
-
+			ft_utils.o \
 
 OBJS	= $(SRCS:.c=.o)
 
@@ -49,6 +46,7 @@ all : $(NAME)
 clean :
 		make clean -C ./libft
 		$(RM) $(OBJS)
+		$(RM) $(SRC_O)
 	
 fclean :
 		make fclean -C ./libft

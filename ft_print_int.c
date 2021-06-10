@@ -6,7 +6,7 @@
 /*   By: seuan <seuan@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/10 15:05:53 by seuan             #+#    #+#             */
-/*   Updated: 2021/06/10 15:12:07 by seuan            ###   ########.fr       */
+/*   Updated: 2021/06/10 16:19:37 by seuan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,6 @@ int ft_print_int(int n, t_flags flags)
     cnt = 0;
 	dum_n = n;
 
-	// prec이 음수로 나오는 경우 해결
 	if (flags.dot < 0)
 		flags.dot = -1;
 	if (n == 0 && flags.dot == 0)
@@ -32,7 +31,6 @@ int ft_print_int(int n, t_flags flags)
 	}
 	if (n < 0 && (flags.zero == 1 || flags.dot >= 0))
 	{
-		// prec off
 		if (flags.dot == -1 && flags.zero == 1)
 			cnt += pf_putchar('-');
 		n *= -1;
@@ -40,10 +38,8 @@ int ft_print_int(int n, t_flags flags)
 	}
 	dum = pf_itoa(n);
 	len = pf_strlen(dum);
-    // 2. prec
     if (flags.dot >= 0 && (size_t)flags.dot < len)
 		flags.dot = len;
-    // 왼쪽 정렬
     if (flags.minus == 1)
 	{
 		if (dum_n < 0 && flags.dot >= 0)
@@ -58,7 +54,6 @@ int ft_print_int(int n, t_flags flags)
 			cnt += print_str_prec(dum, len);
 		}
     }
-    // width로 공백 출력
 	if (flags.dot >= 0 && flags.zero == 1)
 		cnt += ft_width(flags.width, flags.dot, 0);
 	else if (flags.dot >= 0)
