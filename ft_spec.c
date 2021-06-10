@@ -6,7 +6,7 @@
 /*   By: seuan <seuan@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/08 10:19:03 by seuan             #+#    #+#             */
-/*   Updated: 2021/06/10 16:39:33 by seuan            ###   ########.fr       */
+/*   Updated: 2021/06/10 17:29:02 by seuan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ int		ft_spec(int c, t_flags flags, va_list ap)
 	if (c == 'c')
 		cnt = ft_print_char(va_arg(ap, int), flags);
 	else if (c == '%')
-		cnt = ft_print_char('%', flags);
+		cnt = ft_print_percent('%', flags);
 	else if (c == 's')
 		cnt = ft_print_string(va_arg(ap, char *), flags);
 	else if (c == 'd' || c == 'i')

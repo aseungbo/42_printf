@@ -6,7 +6,7 @@
 /*   By: seuan <seuan@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/07 10:07:48 by seuan             #+#    #+#             */
-/*   Updated: 2021/06/10 16:28:46 by seuan            ###   ########.fr       */
+/*   Updated: 2021/06/10 17:27:51 by seuan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ int ft_print_int(int n, t_flags flags);
 int	ft_print_u(unsigned int unsn, t_flags flags);
 int	ft_print_base(unsigned int unsn, t_flags flags);
 int ft_print_pointer(unsigned long long ull, t_flags flags);
+int ft_print_percent(char c, t_flags flags);
 int	print_str_prec(char *str, int prec);
 int	ft_spec(int c, t_flags flags, va_list ap);
 int	ft_type_list(int c);

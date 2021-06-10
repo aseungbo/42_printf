@@ -6,7 +6,7 @@
 /*   By: seuan <seuan@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/08 10:00:03 by seuan             #+#    #+#             */
-/*   Updated: 2021/06/10 15:10:00 by seuan            ###   ########.fr       */
+/*   Updated: 2021/06/10 17:23:08 by seuan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int	ft_print_char(char c, t_flags flags)
 	cnt = 0;
 	if (flags.minus == 1)
 		cnt += pf_putchar(c);
-	cnt += ft_width(flags.width, 1, flags.zero);
+	cnt += ft_width(flags.width, 1, 0);
 	if (flags.minus == 0)
 		cnt += pf_putchar(c);
 	return (cnt);

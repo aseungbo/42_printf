@@ -12,6 +12,7 @@ SRCS	= ft_printf.c \
 			ft_print_u.c \
 			ft_print_base.c \
 			ft_print_pointer.c \
+			ft_print_percent.c \
 			ft_print_int.c \
 			ft_spec.c \
 			ft_width.c \
@@ -25,6 +26,7 @@ SRC_O = ft_print_char.o \
 			ft_print_u.o \
 			ft_print_base.o \
 			ft_print_pointer.o \
+			ft_print_percent.o \
 			ft_print_int.o \
 			ft_spec.o \
 			ft_width.o \
