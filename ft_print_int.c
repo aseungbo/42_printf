@@ -6,7 +6,7 @@
 /*   By: seuan <seuan@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/10 15:05:53 by seuan             #+#    #+#             */
-/*   Updated: 2021/06/11 13:10:25 by seuan            ###   ########.fr       */
+/*   Updated: 2021/06/11 14:16:24 by seuan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,12 +68,34 @@ int			print_int_non_minus(char *dum, t_flags flags, size_t len)
 	return (cnt);
 }
 
+int			print_int_itoa(char *dum, t_flags flags, int dum_n, int n)
+{
+	int		cnt;
+
+	cnt = 0;
+	if (flags.dot >= 0 && (size_t)flags.dot < pf_strlen(dum))
+		flags.dot = pf_strlen(dum);
+	if (flags.minus == 1)
+	{
+		if (dum_n < 0 && flags.dot >= 0 && n != -2147483648)
+			cnt += pf_putchar('-');
+		cnt += print_int_minus(dum, flags, pf_strlen(dum));
+	}
+	cnt += print_int_width(flags, pf_strlen(dum));
+	if (flags.minus == 0)
+	{
+		if (dum_n < 0 && flags.dot >= 0 && n != -2147483648)
+			cnt += pf_putchar('-');
+		cnt += print_int_non_minus(dum, flags, pf_strlen(dum));
+	}
+	return (cnt);
+}
+
 int			ft_print_int(int n, t_flags flags)
 {
 	char	*dum;
 	int		cnt;
 	int		dum_n;
-	size_t	len;
 
 	cnt = 0;
 	dum_n = n;
@@ -92,22 +114,7 @@ int			ft_print_int(int n, t_flags flags)
 		flags.width--;
 	}
 	dum = pf_itoa(n);
-	len = pf_strlen(dum);
-	if (flags.dot >= 0 && (size_t)flags.dot < len)
-		flags.dot = len;
-	if (flags.minus == 1)
-	{
-		if (dum_n < 0 && flags.dot >= 0 && n != -2147483648)
-			cnt += pf_putchar('-');
-		cnt += print_int_minus(dum, flags, len);
-	}
-	cnt += print_int_width(flags, len);
-	if (flags.minus == 0)
-	{
-		if (dum_n < 0 && flags.dot >= 0 && n != -2147483648)
-			cnt += pf_putchar('-');
-		cnt += print_int_non_minus(dum, flags, len);
-	}
+	cnt += print_int_itoa(dum, flags, dum_n, n);
 	free(dum);
 	return (cnt);
 }
