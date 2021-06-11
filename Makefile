@@ -20,6 +20,7 @@ SRCS	= ft_printf.c \
 			pf_itoa.c \
 			u_itoa.c \
 			ft_utils.c \
+			ft_flags.c \
 
 SRC_O = ft_print_char.o \
 			ft_print_string.o \
@@ -34,6 +35,7 @@ SRC_O = ft_print_char.o \
 			pf_itoa.o \
 			u_itoa.o \
 			ft_utils.o \
+			ft_flags.o \
 
 OBJS	= $(SRCS:.c=.o)
 

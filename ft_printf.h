@@ -6,7 +6,7 @@
 /*   By: seuan <seuan@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/07 10:07:48 by seuan             #+#    #+#             */
-/*   Updated: 2021/06/10 17:27:51 by seuan            ###   ########.fr       */
+/*   Updated: 2021/06/11 10:31:34 by seuan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,28 +25,35 @@ typedef struct	s_flags
 	int dot;
 	int type;
 	int star;
-} t_flags;
+}				t_flags;
 
-int pf_putchar(char c);
-int ft_printf(const char *args, ...);
-int	ft_print_char(char c, t_flags flags);
-int	ft_print_string(char *str, t_flags flag);
-int ft_print_int(int n, t_flags flags);
-int	ft_print_u(unsigned int unsn, t_flags flags);
-int	ft_print_base(unsigned int unsn, t_flags flags);
-int ft_print_pointer(unsigned long long ull, t_flags flags);
-int ft_print_percent(char c, t_flags flags);
-int	print_str_prec(char *str, int prec);
-int	ft_spec(int c, t_flags flags, va_list ap);
-int	ft_type_list(int c);
-int	ft_flags_list(int c);
-int	ft_width(int width, int minus, int zero);
-int	pf_isdigit(int c);
+int		pf_putchar(char c);
+int		ft_printf(const char *args, ...);
+int		ft_print_char(char c, t_flags flags);
+int		ft_print_string(char *str, t_flags flag);
+int		ft_print_int(int n, t_flags flags);
+int		ft_print_u(unsigned int unsn, t_flags flags);
+int		ft_print_base(unsigned int unsn, t_flags flags);
+int		ft_print_pointer(unsigned long long ull, t_flags flags);
+int		ft_print_percent(char c, t_flags flags);
+int		print_str_prec(char *str, int prec);
+int		ft_spec(int c, t_flags flags, va_list ap);
+int		ft_type_list(int c);
+int		ft_flags_list(int c);
+int		ft_width(int width, int minus, int zero);
+int		pf_isdigit(int c);
 char	*pf_itoa(int n);
 char	*u_itoa(unsigned int n);
 char	*ft_base(unsigned long long n, int base);
 size_t	pf_strlen(const char *s);
-char		*pf_strdup(const char *s);
-char *pf_str_lower(char *str);
-int	pf_tolower(int c);
+char	*pf_strdup(const char *s);
+char	*pf_str_lower(char *str);
+int		pf_tolower(int c);
+int		flags_dot(va_list ap, t_flags *flags,
+			const char *format, int i);
+
+t_flags	flags_zero(t_flags flags);
+t_flags	flags_minus(t_flags flags);
+t_flags	flags_width(va_list ap, t_flags flags);
+t_flags	flags_digit(char c, t_flags flags);
 #endif

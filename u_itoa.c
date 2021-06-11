@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   u_itoa.c                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: seuan <seuan@student.42seoul.kr>           +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/06/11 07:47:29 by seuan             #+#    #+#             */
+/*   Updated: 2021/06/11 07:59:04 by seuan            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "ft_printf.h"
 
 int		u_num_counter(unsigned int n)
@@ -19,8 +31,7 @@ char	*u_itoa(unsigned int n)
 	char			*str;
 
 	n_cnt = u_num_counter(n);
-    str = (char *)malloc(sizeof(char) * (n_cnt + 1));
-	if (!str)
+	if (!(str = (char *)malloc(sizeof(char) * (n_cnt + 1))))
 		return (NULL);
 	str[n_cnt] = '\0';
 	while (n_cnt--)
