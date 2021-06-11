@@ -6,11 +6,67 @@
 /*   By: seuan <seuan@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/10 15:05:53 by seuan             #+#    #+#             */
-/*   Updated: 2021/06/11 08:02:50 by seuan            ###   ########.fr       */
+/*   Updated: 2021/06/11 13:10:25 by seuan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
+
+int			print_int_width(t_flags flags, size_t len)
+{
+	int		cnt;
+
+	cnt = 0;
+	if (flags.dot >= 0 && flags.zero == 1)
+		cnt += ft_width(flags.width, flags.dot, 0);
+	else if (flags.dot >= 0)
+		cnt += ft_width(flags.width, flags.dot, flags.zero);
+	else
+		cnt += ft_width(flags.width, len, flags.zero);
+	return (cnt);
+}
+
+int			print_int_minus(char *dum, t_flags flags, size_t len)
+{
+	int		cnt;
+
+	cnt = 0;
+	if (flags.dot >= 0)
+	{
+		cnt += ft_width(flags.dot, len, 1);
+		cnt += print_str_prec(dum, flags.dot);
+	}
+	else
+	{
+		cnt += print_str_prec(dum, len);
+	}
+	return (cnt);
+}
+
+int			print_int_non_minus(char *dum, t_flags flags, size_t len)
+{
+	int cnt;
+
+	cnt = 0;
+	if (flags.dot >= 0)
+	{
+		if ((size_t)flags.dot > len)
+		{
+			cnt += ft_width(flags.dot, len, 1);
+			cnt += print_str_prec(dum, flags.dot);
+		}
+		else
+		{
+			cnt += ft_width(flags.dot, len, flags.zero);
+			cnt += print_str_prec(dum, flags.dot);
+		}
+	}
+	else
+	{
+		cnt += print_str_prec(dum, len);
+	}
+	return (cnt);
+}
 
 int			ft_print_int(int n, t_flags flags)
 {
@@ -43,43 +99,14 @@ int			ft_print_int(int n, t_flags flags)
 	{
 		if (dum_n < 0 && flags.dot >= 0 && n != -2147483648)
 			cnt += pf_putchar('-');
-		if (flags.dot >= 0)
-		{
-			cnt += ft_width(flags.dot, len, 1);
-			cnt += print_str_prec(dum, flags.dot);
-		}
-		else
-		{
-			cnt += print_str_prec(dum, len);
-		}
+		cnt += print_int_minus(dum, flags, len);
 	}
-	if (flags.dot >= 0 && flags.zero == 1)
-		cnt += ft_width(flags.width, flags.dot, 0);
-	else if (flags.dot >= 0)
-		cnt += ft_width(flags.width, flags.dot, flags.zero);
-	else
-		cnt += ft_width(flags.width, len, flags.zero);
+	cnt += print_int_width(flags, len);
 	if (flags.minus == 0)
 	{
 		if (dum_n < 0 && flags.dot >= 0 && n != -2147483648)
 			cnt += pf_putchar('-');
-		if (flags.dot >= 0)
-		{
-			if ((size_t)flags.dot > len)
-			{
-				cnt += ft_width(flags.dot, len, 1);
-				cnt += print_str_prec(dum, flags.dot);
-			}
-			else
-			{
-				cnt += ft_width(flags.dot, len, flags.zero);
-				cnt += print_str_prec(dum, flags.dot);
-			}
-		}
-		else
-		{
-			cnt += print_str_prec(dum, len);
-		}
+		cnt += print_int_non_minus(dum, flags, len);
 	}
 	free(dum);
 	return (cnt);

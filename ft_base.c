@@ -6,11 +6,28 @@
 /*   By: seuan <seuan@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/10 15:06:15 by seuan             #+#    #+#             */
-/*   Updated: 2021/06/11 07:52:04 by seuan            ###   ########.fr       */
+/*   Updated: 2021/06/11 11:23:26 by seuan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
+
+int		pf_tolower(int c)
+{
+	if (65 <= c && c <= 90)
+		return (c + 32);
+	return (c);
+}
+
+char	*pf_str_lower(char *str)
+{
+	int i;
+
+	i = -1;
+	while (str[++i])
+		str[i] = pf_tolower(str[i]);
+	return (str);
+}
 
 char	*ft_base(unsigned long long n, int base)
 {

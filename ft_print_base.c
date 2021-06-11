@@ -6,48 +6,26 @@
 /*   By: seuan <seuan@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/10 15:06:06 by seuan             #+#    #+#             */
-/*   Updated: 2021/06/11 07:40:58 by seuan            ###   ########.fr       */
+/*   Updated: 2021/06/11 12:21:50 by seuan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int	pf_tolower(int c)
+int			print_base_zero(t_flags flags)
 {
-	if (65 <= c && c <= 90)
-		return (c + 32);
-	return (c);
-}
-
-char	*pf_str_lower(char *str)
-{
-	int i;
-
-	i = -1;
-	while (str[++i])
-		str[i] = pf_tolower(str[i]);
-	return (str);
-}
-
-int			ft_print_base(unsigned int unsn, t_flags flags)
-{
-	int		cnt;
-	char	*str;
-	size_t	len;
+	int cnt;
 
 	cnt = 0;
-	unsn = (unsigned int)(4294967296 + unsn);
-	if (unsn == 0 && flags.dot == 0)
-	{
-		cnt += ft_width(flags.width, 0, 0);
-		return (cnt);
-	}
-	str = ft_base(unsn, 16);
-	len = pf_strlen(str);
-	if (flags.type == 'x')
-		str = pf_str_lower(str);
-	if (flags.dot >= 0 && (size_t)flags.dot < len)
-		flags.dot = len;
+	cnt += ft_width(flags.width, 0, 0);
+	return (cnt);
+}
+
+int			print_base_minus(char *str, t_flags flags, size_t len)
+{
+	int cnt;
+
+	cnt = 0;
 	if (flags.minus == 1)
 	{
 		if (flags.dot >= 0)
@@ -60,12 +38,14 @@ int			ft_print_base(unsigned int unsn, t_flags flags)
 			cnt += print_str_prec(str, len);
 		}
 	}
-	if (flags.dot >= 0 && flags.zero == 1)
-		cnt += ft_width(flags.width, flags.dot, 0);
-	else if (flags.dot >= 0)
-		cnt += ft_width(flags.width, flags.dot, flags.zero);
-	else
-		cnt += ft_width(flags.width, len, flags.zero);
+	return (cnt);
+}
+
+int			print_base_non_minus(char *str, t_flags flags, size_t len)
+{
+	int cnt;
+
+	cnt = 0;
 	if (flags.minus == 0)
 	{
 		if (flags.dot >= 0)
@@ -86,6 +66,44 @@ int			ft_print_base(unsigned int unsn, t_flags flags)
 			cnt += print_str_prec(str, len);
 		}
 	}
+	return (cnt);
+}
+
+int			print_base_width(t_flags flags, size_t len)
+{
+	int cnt;
+
+	cnt = 0;
+	if (flags.dot >= 0 && flags.zero == 1)
+		cnt += ft_width(flags.width, flags.dot, 0);
+	else if (flags.dot >= 0)
+		cnt += ft_width(flags.width, flags.dot, flags.zero);
+	else
+		cnt += ft_width(flags.width, len, flags.zero);
+	return (cnt);
+}
+
+int			ft_print_base(unsigned int unsn, t_flags flags)
+{
+	int		cnt;
+	char	*str;
+	size_t	len;
+
+	cnt = 0;
+	if (unsn == 0 && flags.dot == 0)
+	{
+		cnt = print_base_zero(flags);
+		return (cnt);
+	}
+	str = ft_base(unsn, 16);
+	len = pf_strlen(str);
+	if (flags.type == 'x')
+		str = pf_str_lower(str);
+	if (flags.dot >= 0 && (size_t)flags.dot < len)
+		flags.dot = len;
+	cnt += print_base_minus(str, flags, len);
+	cnt += print_base_width(flags, len);
+	cnt += print_base_non_minus(str, flags, len);
 	free(str);
 	return (cnt);
 }
