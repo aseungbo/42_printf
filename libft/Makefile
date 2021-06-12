@@ -6,7 +6,7 @@
 #    By: seuan <seuan@student.42seoul.kr>           +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/12/23 16:35:00 by seuan             #+#    #+#              #
-#    Updated: 2021/01/03 18:20:35 by seuan            ###   ########.fr        #
+#    Updated: 2021/06/12 18:32:32 by seuan            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,9 +28,6 @@ BONUS			=	ft_lstadd_back.c ft_lstadd_front.c ft_lstclear.c ft_lstdelone.c ft_lst
 					ft_lstnew.c ft_lstsize.c ft_lstiter.c ft_lstmap.c
 BONUS_OBJS		= $(BONUS:.c=.o)
 
-
-all:			$(NAME)
-
 $(NAME):		$(OBJS)
 				ar rcs $(NAME) $(OBJS)
 
@@ -38,7 +35,10 @@ $(OBJS):		$(SRCS)
 				$(CC) $(CFLAGS) $(SRCS)
 
 $(BONUS_OBJS):	$(BONUS)
-				$(CC) $(CFLAGS) $(BONUS)				
+				$(CC) $(CFLAGS) $(BONUS)
+				
+all:			$(NAME)
+
 clean:
 				$(RM) $(OBJS) $(BONUS_OBJS)
 

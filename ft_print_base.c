@@ -6,7 +6,7 @@
 /*   By: seuan <seuan@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/10 15:06:06 by seuan             #+#    #+#             */
-/*   Updated: 2021/06/11 12:21:50 by seuan            ###   ########.fr       */
+/*   Updated: 2021/06/11 15:16:09 by seuan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,7 +95,8 @@ int			ft_print_base(unsigned int unsn, t_flags flags)
 		cnt = print_base_zero(flags);
 		return (cnt);
 	}
-	str = ft_base(unsn, 16);
+	if (!(str = ft_base(unsn, 16)))
+		return (0);
 	len = pf_strlen(str);
 	if (flags.type == 'x')
 		str = pf_str_lower(str);

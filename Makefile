@@ -1,3 +1,15 @@
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    Makefile                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: seuan <seuan@student.42seoul.kr>           +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2021/06/12 18:29:48 by seuan             #+#    #+#              #
+#    Updated: 2021/06/12 18:34:48 by seuan            ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
+
 NAME	= libftprintf.a
 RM		= rm -rf
 INCLUDES = -I./
@@ -22,7 +34,8 @@ SRCS	= ft_printf.c \
 			ft_utils.c \
 			ft_flags.c \
 
-SRC_O = ft_print_char.o \
+SRC_O	= ft_printf.o \
+			ft_print_char.o \
 			ft_print_string.o \
 			ft_print_u.o \
 			ft_print_base.o \
@@ -51,11 +64,11 @@ clean :
 		make clean -C ./libft
 		$(RM) $(OBJS)
 		$(RM) $(SRC_O)
-	
-fclean :
+
+fclean : clean
 		make fclean -C ./libft
 		$(RM) $(NAME)
 
-re : fclean all
+re : fclean clean all
 
-.PHONY: all clean fclean re bonus
+.PHONY:			all clean fclean re

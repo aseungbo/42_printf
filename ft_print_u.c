@@ -6,13 +6,13 @@
 /*   By: seuan <seuan@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/11 07:45:15 by seuan             #+#    #+#             */
-/*   Updated: 2021/06/11 11:44:00 by seuan            ###   ########.fr       */
+/*   Updated: 2021/06/11 15:45:39 by seuan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int			ft_print_u_minus(char *dum, t_flags flags, size_t len)
+int			print_u_minus(char *dum, t_flags flags, size_t len)
 {
 	int cnt;
 
@@ -32,7 +32,7 @@ int			ft_print_u_minus(char *dum, t_flags flags, size_t len)
 	return (cnt);
 }
 
-int			ft_print_u_non_minus(char *dum, t_flags flags, size_t len)
+int			print_u_non_minus(char *dum, t_flags flags, size_t len)
 {
 	int cnt;
 
@@ -60,6 +60,20 @@ int			ft_print_u_non_minus(char *dum, t_flags flags, size_t len)
 	return (cnt);
 }
 
+int			print_u_width(t_flags flags, size_t len)
+{
+	int		cnt;
+
+	cnt = 0;
+	if (flags.dot >= 0 && flags.zero == 1)
+		cnt += ft_width(flags.width, flags.dot, 0);
+	else if (flags.dot >= 0)
+		cnt += ft_width(flags.width, flags.dot, flags.zero);
+	else
+		cnt += ft_width(flags.width, len, flags.zero);
+	return (cnt);
+}
+
 int			ft_print_u(unsigned int unsn, t_flags flags)
 {
 	int		cnt;
@@ -67,7 +81,8 @@ int			ft_print_u(unsigned int unsn, t_flags flags)
 	size_t	len;
 
 	cnt = 0;
-	dum = u_itoa(unsn);
+	if (!(dum = u_itoa(unsn)))
+		return (0);
 	len = pf_strlen(dum);
 	unsn = (unsigned int)(4294967296 + unsn);
 	if (unsn == 0 && flags.dot == 0)
@@ -77,14 +92,9 @@ int			ft_print_u(unsigned int unsn, t_flags flags)
 	}
 	if (flags.dot >= 0 && (size_t)flags.dot < len)
 		flags.dot = len;
-	cnt += ft_print_u_minus(dum, flags, len);
-	if (flags.dot >= 0 && flags.zero == 1)
-		cnt += ft_width(flags.width, flags.dot, 0);
-	else if (flags.dot >= 0)
-		cnt += ft_width(flags.width, flags.dot, flags.zero);
-	else
-		cnt += ft_width(flags.width, len, flags.zero);
-	cnt += ft_print_u_non_minus(dum, flags, len);
+	cnt += print_u_minus(dum, flags, len);
+	cnt += print_u_width(flags, len);
+	cnt += print_u_non_minus(dum, flags, len);
 	free(dum);
 	return (cnt);
 }

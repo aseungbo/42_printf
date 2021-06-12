@@ -6,7 +6,7 @@
 /*   By: seuan <seuan@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/10 15:05:53 by seuan             #+#    #+#             */
-/*   Updated: 2021/06/11 14:16:24 by seuan            ###   ########.fr       */
+/*   Updated: 2021/06/11 15:15:43 by seuan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,7 +113,8 @@ int			ft_print_int(int n, t_flags flags)
 		n *= -1;
 		flags.width--;
 	}
-	dum = pf_itoa(n);
+	if (!(dum = pf_itoa(n)))
+		return (0);
 	cnt += print_int_itoa(dum, flags, dum_n, n);
 	free(dum);
 	return (cnt);

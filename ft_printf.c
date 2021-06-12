@@ -6,7 +6,7 @@
 /*   By: seuan <seuan@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/07 10:07:52 by seuan             #+#    #+#             */
-/*   Updated: 2021/06/11 14:12:03 by seuan            ###   ########.fr       */
+/*   Updated: 2021/06/11 15:13:45 by seuan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,8 @@ int				ft_printf(const char *input, ...)
 	va_list		ap;
 
 	cnt = 0;
-	format = pf_strdup(input);
+	if (!(format = pf_strdup(input)))
+		return (0);
 	va_start(ap, input);
 	cnt += process(format, ap);
 	free((char *)format);
